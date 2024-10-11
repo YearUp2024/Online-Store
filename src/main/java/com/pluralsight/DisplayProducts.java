@@ -7,13 +7,22 @@ import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * This Class allows the users to Search for or Add new items into Products.csv fiel. 
+ */
 public class DisplayProducts {
     static Scanner scanner = new Scanner(System.in);
 
+    /**
+     * This is my Main method that is calling PromptUser();
+     */
     public void main(){
         PromptUser();
     }
 
+    /**
+     * This method is going to prompt the users to choose from different options.
+     */
     public static void PromptUser(){
         HashMap<String, String[]>products = loadProductFromCSV("products.csv");
         while(true) {
@@ -38,6 +47,12 @@ public class DisplayProducts {
         }
     }
 
+    /**
+     * This method is going to loop over the Products.csv file and store all the items into a HashMap.
+     * Which will allow the program to find items faster and easily.
+     * @param fileName
+     * @return
+     */
     public static HashMap<String, String[]>loadProductFromCSV(String fileName){
         HashMap<String, String[]> product = new HashMap<>();
 
@@ -64,6 +79,13 @@ public class DisplayProducts {
         return product;
     }
 
+    /**
+     * This method is going to loop over HashMap and see if it can find the product the user is looking for.
+     * If the product is not found it will print a message and will allow the users to choose from different
+     * options.
+     * @param product
+     * @return Product from the HashMap
+     */
     public static String searchProduct(HashMap<String, String[]> product){
         System.out.print("Enter a product SKU: ");
         String productSKU = scanner.nextLine();
@@ -76,6 +98,10 @@ public class DisplayProducts {
         }
     }
 
+    /**
+     * This method allows the users to Add new items into the Products.csv file.
+     * The user needs to enter Product SD, Name, Price, And Department.
+     */
     public static void Add(){
         System.out.println("------------------You are Adding a new product into the list--------------");
         System.out.print("Enter product SDK: ");

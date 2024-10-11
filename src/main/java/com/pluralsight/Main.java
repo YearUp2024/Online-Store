@@ -22,6 +22,7 @@ public class Main {
             userChoice = scanner.nextLine();
 
             if(userChoice.equalsIgnoreCase("P")){
+                System.out.println("----------------");
                 displayProducts.main();
             }
             if(userChoice.equalsIgnoreCase("C")){

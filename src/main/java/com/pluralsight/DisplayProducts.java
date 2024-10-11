@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * This Class allows the users to Search for or Add new items into Products.csv fiel. 
+ * This Class allows the users to Search for or Add new items into Products.csv fiel.
  */
 public class DisplayProducts {
     static Scanner scanner = new Scanner(System.in);
@@ -32,15 +32,18 @@ public class DisplayProducts {
             System.out.print("Choose from the options: ");
             String userChoice = scanner.nextLine();
 
+            //This is going to print out the item the user is looking for.
             if(userChoice.equalsIgnoreCase("S")){
                 String result = searchProduct(products);
                 System.out.println("------------------------------------");
                 System.out.println(result);
                 System.out.println("------------------------------------");
             }
+            //This is going to allow the users to Add new items into the products.csv file.
             if(userChoice.equalsIgnoreCase("A")){
                 Add();
             }
+            //This is end the loop.
             if(userChoice.equalsIgnoreCase("B")){
                break;
             }
@@ -54,8 +57,10 @@ public class DisplayProducts {
      * @return
      */
     public static HashMap<String, String[]>loadProductFromCSV(String fileName){
+        //This is a empty HashMap. String is the Key and String[] holds the Values
         HashMap<String, String[]> product = new HashMap<>();
 
+        //This is Loading data from Products.csv file to the HashMap.
         try{
             FileReader fileReader = new FileReader(fileName);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -90,6 +95,7 @@ public class DisplayProducts {
         System.out.print("Enter a product SKU: ");
         String productSKU = scanner.nextLine();
 
+        //This is going to return a product if the SKU is a valid Key.
         if(product.containsKey(productSKU)){
             String[] productDetails = product.get(productSKU);
             return String.format("SKU: %s \nName: %s \nPrice: $%s \nDescription: %s",productSKU, productDetails[0], productDetails[1], productDetails[2]);
@@ -117,10 +123,12 @@ public class DisplayProducts {
         System.out.print("Enter product Department: ");
         String addProductDepartment = scanner. nextLine();
 
+        //This is going to Add a new item in to the Products.csv file
         try{
             FileWriter fileWriter = new FileWriter("products.csv", true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
+            
+            //This the format of how the data is going to be stored into Products.csv
             bufferedWriter.write(String.format("\n%s|%s|%.2f|%s\n", addProductSDK, addProductName, addProductPrice, addProductDepartment));
             bufferedWriter.close();
             System.out.println("Product Added successfully!");
